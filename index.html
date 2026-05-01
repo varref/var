@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+
+
+
+  <meta charset="UTF-8">
+
+
+
+
+
+
+
+
+
+
+  
+
+<meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <meta name="theme-color" content="#0A0A0A">
+  <title>VAR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #E30613;
+      --primary-dark: #8b0000;
+      --secondary-color: #1E88E5;
+      --accent-color: #FFC107;
+      --dark-bg: #000;
+      --card-bg: #1A1A1A;
+      --text-primary: #FFFFFF;
+      --text-secondary: #B0B0B0;
+      --success-color: #4CAF50;
+      --info-color: #2196F3;
+      --warning-color: #FF9800;
+      --danger-color: #F44336;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Header Styles */
+    .app-header {
+      padding: 20px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(180deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.7) 100%);
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      font-size: 1.5rem;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 15px;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .welcome-message {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .welcome-message h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .welcome-message p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 25px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(227, 6, 19, 0.1), rgba(227, 6, 19, 0));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-card:active {
+      transform: translateY(0);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1);
+    }
+
+    .feature-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .feature-desc {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    /* Specific feature colors */
+    #channels-card { --feature-color: var(--info-color); }
+    #matches-card { --feature-color: var(--primary-color); }
+    #news-card { --feature-color: var(--accent-color); }
+    #schedule-card { --feature-color: var(--success-color); }
+
+    .feature-card i {
+      color: var(--feature-color);
+    }
+
+    /* Side Navigation */
+    .side-nav {
+      position: fixed;
+      top: 0;
+      right: -500px;
+      width: 280px;
+      height: 100%;
+      background: var(--card-bg);
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+      border-left: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .side-nav.open {
+      right: 0;
+    }
+
+    .nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-title {
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+
+    .close-nav {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .close-nav:hover {
+      color: var(--text-primary);
+      transform: rotate(90deg);
+    }
+
+    .nav-menu {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 12px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-secondary);
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+
+    .nav-item i {
+      font-size: 1.2rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    .nav-footer {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .app-version {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      margin-top: 15px;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Floating Action Button */
+    .fab {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      width: 50px;
+      height: 50px;
+      background: #424242;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 15px rgba(000, 0, 0, 0.4);
+      cursor: pointer;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .fab:hover {
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 6px 20px rgba(227, 6, 19, 0.6);
+    }
+
+    /* Notification Toast */
+    .toast {
+      position: fixed;
+      bottom: -100px;
+      right: 20px;
+      background: var(--card-bg);
+      color: var(--text-primary);
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1100;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      max-width: 300px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .toast.show {
+      bottom: 20px;
+    }
+
+    .toast-icon {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .toast-close {
+      margin-right: auto;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .toast-close:hover {
+      color: var(--text-primary);
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      .features-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1000px;
+        margin: 30px auto;
+      }
+
+      .welcome-message h1 {
+        font-size: 2.5rem;
+      }
+
+      .welcome-message p {
+        font-size: 1.1rem;
+      }
+
+      .side-nav {
+        width: 320px;
+      }
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .feature-card:nth-child(1) {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .feature-card:nth-child(2) {
+      animation: float 4s ease-in-out infinite 0.5s;
+    }
+
+    .feature-card:nth-child(3) {
+      animation: float 4s ease-in-out infinite 1s;
+    }
+
+    .feature-card:nth-child(4) {
+      animation: float 4s ease-in-out infinite 1.5s;
+    }
+
+    /* Ripple Effect */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    /* توحيد شكل جميع الأيقونات: أسود + بوردر أبيض */
+.feature-icon,
+.nav-item i,
+.close-nav i,
+.fab i,
+.toast-icon {
+  color: #000 !important;
+  -webkit-text-stroke: 1.75px #fff; /* بوردر أبيض للأيقونات */
+  text-stroke: 1px #fff;
+}
+
+/* إلغاء ألوان الميزات السابقة */
+.feature-card i {
+  color: #000 !important;
+}
+    
+    
+  </style>
+</head>
+<body>
+
+
+
+
+
+
+  <!-- Header -->
+  
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+
+    <div class="features-grid">
+      <div class="feature-card" id="channels-card" onclick="delayedRedirect('go:L')">
+        <i class="feature-icon fas fa-tv"></i>
+        <h3 class="feature-title">القنوات الناقلة</h3>
+        <p class="feature-desc">شاهد جميع القنوات الناقلة للمباريات</p>
+      </div>
+      <div class="feature-card" id="matches-card" onclick="delayedRedirect('go:M')">
+        <i class="feature-icon fas fa-trophy"></i>
+        <h3 class="feature-title">المباريات</h3>
+        <p class="feature-desc">متابعة  المباريات القديمة</p>
+      </div>
+      <div class="feature-card" id="news-card" onclick="delayedRedirect('go:KH')">
+        <i class="feature-icon fas fa-newspaper"></i>
+        <h3 class="feature-title">أخبار الرياضة</h3>
+        <p class="feature-desc">آخر الأخبار والتطورات في العالم الرياضي</p>
+      </div>
+      <div class="feature-card" id="schedule-card" onclick="delayedRedirect('go:RA')">
+        <i class="feature-icon fas fa-calendar-alt"></i>
+        <h3 class="feature-title">جدول المباريات</h3>
+        <p class="feature-desc">تعرف على مواعيد المباريات القادمة</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating Action Button -->
+  <div class="fab" id="menuBtn">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Side Navigation -->
+  <nav class="side-nav" id="sideNav">
+    <div class="nav-header">
+      <h3 class="nav-title">القائمة</h3>
+      <button class="close-nav" id="closeNav">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+      
+    <div class="nav-menu">
+      <div class="nav-item" onclick="delayedRedirect('go:S')">
+        <i class="fas fa-share-alt"></i>
+        <span>مشاركة التطبيق</span>
+      </div>
+      <div class="nav-item" onclick="delayedRedirect('go:SO')">
+        <i class="fas fa-comment-alt"></i>
+        <span>الدردشة </span>
+      </div>
+      
+     
+    </div>
+      
+    <div class="nav-footer">
+      <div class="app-version">الإصدار 2.1.0</div>
+    </div>
+  </nav>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="telegramToast">
+    <i class="fas fa-paper-plane toast-icon"></i>
+    <div class="toast-content">
+      تابعنا على التليجرام للحصول على آخر التحديثات
+    </div>
+    <i class="fas fa-times toast-close" id="toastClose"></i>
+  </div>
+
+  <script>
+  
+  
+  
+
+    // Ripple Effect
+    document.querySelectorAll('.feature-card, .fab, .nav-item').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+          
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+          
+        this.appendChild(ripple);
+          
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    // Navigation Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const sideNav = document.getElementById('sideNav');
+    const closeNav = document.getElementById('closeNav');
+    const overlay = document.getElementById('overlay');
+
+    menuBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      sideNav.classList.add('open');
+      overlay.classList.add('active');
+    });
+
+    closeNav.addEventListener('click', function() {
+      sideNav.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+
+    overlay.addEventListener('click', function() {
+      sideNav.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+
+    // Delayed Redirect
+    function delayedRedirect(url) {
+      setTimeout(() => {
+        window.location.href = url;
+      }, 200);
+    }
+
+    // Show Telegram Toast
+setTimeout(() => {
+  const toast = document.getElementById('telegramToast');
+  toast.classList.add('show');
+}, 200);
+
+
+
+
+    // Close Toast
+    document.getElementById('toastClose').addEventListener('click', function() {
+      document.getElementById('telegramToast').classList.remove('show');
+    });
+
+    // Click on toast to open Telegram
+    document.getElementById('telegramToast').addEventListener('click', function(e) {
+      if (e.target === this || e.target.classList.contains('toast-content')) {
+        window.open('https://t.me/var_app', '_blank');
+      }
+    });
+
+
+
+
+    // Coming Soon Function
+    function showComingSoon() {
+      const toast = document.getElementById('telegramToast');
+      toast.querySelector('.toast-icon').className = 'fas fa-info-circle toast-icon';
+      toast.querySelector('.toast-icon').style.color = 'var(--accent-color)';
+      toast.querySelector('.toast-content').textContent = 'هذه الميزة قريبًا في التحديثات القادمة!';
+      toast.classList.add('show');
+        
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
