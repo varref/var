@@ -1,28 +1,10 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-
-
-
-  <meta charset="UTF-8">
-
-
-
-
-
-
-
-
-
-
-  
-
-<meta charset="UTF-8" />
-
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <meta name="theme-color" content="#0A0A0A">
-  <title>VAR</title>
+  <title>VAR - منصة رياضية</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -60,33 +42,6 @@
       overflow-x: hidden;
     }
 
-    /* Header Styles */
-    .app-header {
-      padding: 20px 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(180deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.7) 100%);
-      position: relative;
-      z-index: 10;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .logo-icon {
-      font-size: 1.5rem;
-    }
-
     /* Main Content */
     .main-content {
       flex: 1;
@@ -96,25 +51,6 @@
       position: relative;
       justify-content: center;
       align-items: center;
-    }
-
-    .welcome-message {
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    .welcome-message h1 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .welcome-message p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
     }
 
     /* Features Grid */
@@ -190,150 +126,8 @@
       text-align: center;
     }
 
-    /* Specific feature colors */
-    #channels-card { --feature-color: var(--info-color); }
-    #matches-card { --feature-color: var(--primary-color); }
-    #news-card { --feature-color: var(--accent-color); }
-    #schedule-card { --feature-color: var(--success-color); }
-
     .feature-card i {
       color: var(--feature-color);
-    }
-
-    /* Side Navigation */
-    .side-nav {
-      position: fixed;
-      top: 0;
-      right: -500px;
-      width: 280px;
-      height: 100%;
-      background: var(--card-bg);
-      z-index: 1000;
-      transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-      border-left: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .side-nav.open {
-      right: 0;
-    }
-
-    .nav-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .nav-title {
-      font-size: 1.3rem;
-      font-weight: 500;
-    }
-
-    .close-nav {
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .close-nav:hover {
-      color: var(--text-primary);
-      transform: rotate(90deg);
-    }
-
-    .nav-menu {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 12px 15px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      color: var(--text-secondary);
-    }
-
-    .nav-item:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-primary);
-    }
-
-    .nav-item i {
-      font-size: 1.2rem;
-      width: 24px;
-      text-align: center;
-    }
-
-    .nav-footer {
-      margin-top: auto;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .app-version {
-      text-align: center;
-      color: var(--text-secondary);
-      font-size: 0.8rem;
-      margin-top: 15px;
-    }
-
-    /* Overlay */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-    }
-
-    .overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Floating Action Button */
-    .fab {
-      position: fixed;
-      top: 25px;
-      right: 25px;
-      width: 50px;
-      height: 50px;
-      background: #424242;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 1.5rem;
-      box-shadow: 0 4px 15px rgba(000, 0, 0, 0.4);
-      cursor: pointer;
-      z-index: 100;
-      transition: all 0.3s ease;
-    }
-
-    .fab:hover {
-      transform: scale(1.1) rotate(90deg);
-      box-shadow: 0 6px 20px rgba(227, 6, 19, 0.6);
     }
 
     /* Notification Toast */
@@ -341,6 +135,7 @@
       position: fixed;
       bottom: -100px;
       right: 20px;
+      left: auto;
       background: var(--card-bg);
       color: var(--text-primary);
       padding: 15px 20px;
@@ -383,30 +178,12 @@
         max-width: 1000px;
         margin: 30px auto;
       }
-
-      .welcome-message h1 {
-        font-size: 2.5rem;
-      }
-
-      .welcome-message p {
-        font-size: 1.1rem;
-      }
-
-      .side-nav {
-        width: 320px;
-      }
     }
 
     /* Animations */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
     }
 
     .feature-card:nth-child(1) {
@@ -443,107 +220,69 @@
     }
     
     /* توحيد شكل جميع الأيقونات: أسود + بوردر أبيض */
-.feature-icon,
-.nav-item i,
-.close-nav i,
-.fab i,
-.toast-icon {
-  color: #000 !important;
-  -webkit-text-stroke: 1.75px #fff; /* بوردر أبيض للأيقونات */
-  text-stroke: 1px #fff;
-}
+    .feature-icon,
+    .toast-icon {
+      color: #000 !important;
+      -webkit-text-stroke: 1.75px #fff;
+      text-stroke: 1px #fff;
+    }
 
-/* إلغاء ألوان الميزات السابقة */
-.feature-card i {
-  color: #000 !important;
-}
+    /* إلغاء ألوان الميزات السابقة */
+    .feature-card i {
+      color: #000 !important;
+    }
     
+    /* إزالة أي عناصر تنقل أو أزرار قوائم بشكل قاطع */
+    .fab, .side-nav, .nav-menu, .nav-item, .nav-header, .close-nav, .nav-footer, .app-version, .overlay, [id="menuBtn"], [class*="fab"], [class*="side-nav"] {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      z-index: -9999 !important;
+    }
     
+    /* التأكد من عدم ظهور أي خلفية أو overlay */
+    body > .overlay, .overlay {
+      display: none !important;
+      background: transparent !important;
+    }
   </style>
 </head>
 <body>
 
-
-
-
-
-
-  <!-- Header -->
-  
-
-  <!-- Main Content -->
+  <!-- Main Content: فقط البطاقات الأساسية، تم ازالة الهيدر وازالة الفاب وازالة القائمة وازالة الاوفرلاي -->
   <main class="main-content">
-    
-
     <div class="features-grid">
-  
-  <div class="feature-card" id="channels-card" onclick="window.location.href='https://varref.github.io/LiveT/'">
-    <i class="feature-icon fas fa-tv"></i>
-    <h3 class="feature-title">القنوات الناقلة</h3>
-    <p class="feature-desc">شاهد جميع القنوات الناقلة للمباريات</p>
-  </div>
-  
-  <div class="feature-card" id="matches-card" onclick="window.location.href='https://varref.github.io/Match/'">
-    <i class="feature-icon fas fa-trophy"></i>
-    <h3 class="feature-title">المباريات</h3>
-    <p class="feature-desc">متابعة المباريات القديمة</p>
-  </div>
-  
-  <div class="feature-card" id="news-card" onclick="window.location.href='https://varref.github.io/KH/'">
-    <i class="feature-icon fas fa-newspaper"></i>
-    <h3 class="feature-title">أخبار الرياضة</h3>
-    <p class="feature-desc">آخر الأخبار والتطورات في العالم الرياضي</p>
-  </div>
-  
-  <div class="feature-card" id="schedule-card" onclick="window.location.href='https://varref.github.io/LiveE/'">
-    <i class="feature-icon fas fa-calendar-alt"></i>
-    <h3 class="feature-title">جدول المباريات</h3>
-    <p class="feature-desc">تعرف على مواعيد المباريات القادمة</p>
-  </div>
-  
-</div>
+      <div class="feature-card" id="channels-card" onclick="window.location.href='https://varref.github.io/LiveT/'">
+        <i class="feature-icon fas fa-tv"></i>
+        <h3 class="feature-title">القنوات الناقلة</h3>
+        <p class="feature-desc">شاهد جميع القنوات الناقلة للمباريات</p>
+      </div>
+      
+      <div class="feature-card" id="matches-card" onclick="window.location.href='https://varref.github.io/Match/'">
+        <i class="feature-icon fas fa-trophy"></i>
+        <h3 class="feature-title">المباريات</h3>
+        <p class="feature-desc">متابعة المباريات القديمة</p>
+      </div>
+      
+      <div class="feature-card" id="news-card" onclick="window.location.href='https://varref.github.io/KH/'">
+        <i class="feature-icon fas fa-newspaper"></i>
+        <h3 class="feature-title">أخبار الرياضة</h3>
+        <p class="feature-desc">آخر الأخبار والتطورات في العالم الرياضي</p>
+      </div>
+      
+      <div class="feature-card" id="schedule-card" onclick="window.location.href='https://varref.github.io/LiveE/'">
+        <i class="feature-icon fas fa-calendar-alt"></i>
+        <h3 class="feature-title">جدول المباريات</h3>
+        <p class="feature-desc">تعرف على مواعيد المباريات القادمة</p>
+      </div>
+    </div>
   </main>
 
-  <!-- Floating Action Button -->
-  <div class="fab" id="menuBtn">
-    <i class="fas fa-bars"></i>
-  </div>
-
-  <!-- Side Navigation -->
-  <nav class="side-nav" id="sideNav">
-    <div class="nav-header">
-      <h3 class="nav-title">القائمة</h3>
-      <button class="close-nav" id="closeNav">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-      
-    <div class="nav-menu">
-  
-  <div class="nav-item" onclick="window.location.href='https://varref.github.io/share/'">
-    <i class="fas fa-share-alt"></i>
-    <span>مشاركة التطبيق</span>
-  </div>
-  
-  <div class="nav-item" onclick="window.location.href='https://varref.github.io/chat/'">
-    <i class="fas fa-comment-alt"></i>
-    <span>الدردشة</span>
-  </div>
-  
-</div>
-      
-     
-    </div>
-      
-    <div class="nav-footer">
-      <div class="app-version">الإصدار 2.1.0</div>
-    </div>
-  </nav>
-
-  <!-- Overlay -->
-  <div class="overlay" id="overlay"></div>
-
-  <!-- Notification Toast -->
+  <!-- Notification Toast: تم الابقاء عليه لانه ليس جزء من nav menu ولا ازراره -->
   <div class="toast" id="telegramToast">
     <i class="fas fa-paper-plane toast-icon"></i>
     <div class="toast-content">
@@ -553,13 +292,18 @@
   </div>
 
   <script>
-  
-  
-  
-
-    // Ripple Effect
-    document.querySelectorAll('.feature-card, .fab, .nav-item').forEach(button => {
+    // =========================================================================
+    // تم إزالة NAV MENU بالكامل وكل الأزرار بداخله (القائمة الجانبية وكل عناصرها)
+    // كما تم إزالة الزر الذي يفتحه (FAB) وجميع التوابع المرتبطة به (اوفرلاي، كلosing handlers)
+    // لا يوجد أي كود متبقي يتعامل مع فتح أو إغلاق أي قائمة.
+    // تم مسح جميع العناصر: sideNav, menuBtn, overlay, nav-menu, nav-item, closeNav, nav-footer
+    // فقط ripple effect للبطاقات وإشعار التليجرام.
+    // =========================================================================
+    
+    // Ripple Effect يضيف تأثير الموجة لبطاقات المحتوى فقط (لا يوجد أزرار تنقل)
+    document.querySelectorAll('.feature-card').forEach(button => {
       button.addEventListener('click', function(e) {
+        // منع تأثير التموج في حال النقر على الروابط بطريقة طبيعية
         const rect = this.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -568,80 +312,135 @@
         ripple.classList.add('ripple');
         ripple.style.left = `${x}px`;
         ripple.style.top = `${y}px`;
-          
+        ripple.style.position = 'absolute';
+        ripple.style.borderRadius = '50%';
+        ripple.style.backgroundColor = 'rgba(255,255,255,0.5)';
+        ripple.style.pointerEvents = 'none';
+        ripple.style.transform = 'scale(0)';
+        ripple.style.animation = 'ripple 0.6s linear';
+        ripple.style.width = '10px';
+        ripple.style.height = '10px';
+        
+        this.style.position = 'relative';
         this.appendChild(ripple);
           
         setTimeout(() => {
-          ripple.remove();
+          if (ripple && ripple.remove) ripple.remove();
         }, 600);
       });
     });
-
-    // Navigation Toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const sideNav = document.getElementById('sideNav');
-    const closeNav = document.getElementById('closeNav');
-    const overlay = document.getElementById('overlay');
-
-    menuBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      sideNav.classList.add('open');
-      overlay.classList.add('active');
-    });
-
-    closeNav.addEventListener('click', function() {
-      sideNav.classList.remove('open');
-      overlay.classList.remove('active');
-    });
-
-    overlay.addEventListener('click', function() {
-      sideNav.classList.remove('open');
-      overlay.classList.remove('active');
-    });
-
-    // Delayed Redirect
-    function delayedRedirect(url) {
-      setTimeout(() => {
-        window.location.href = url;
-      }, 200);
+    
+    // إضافة تعريف animation الripple في حال لم يتم تغطيته بشكل كامل
+    if (!document.querySelector('#ripple-keyframe-style')) {
+      const styleSheet = document.createElement("style");
+      styleSheet.id = "ripple-keyframe-style";
+      styleSheet.textContent = `
+        @keyframes ripple {
+          to {
+            transform: scale(20);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(styleSheet);
     }
-
-    // Show Telegram Toast
-setTimeout(() => {
-  const toast = document.getElementById('telegramToast');
-  toast.classList.add('show');
-}, 200);
-
-
-
-
-    // Close Toast
-    document.getElementById('toastClose').addEventListener('click', function() {
-      document.getElementById('telegramToast').classList.remove('show');
-    });
-
-    // Click on toast to open Telegram
-    document.getElementById('telegramToast').addEventListener('click', function(e) {
-      if (e.target === this || e.target.classList.contains('toast-content')) {
-        window.open('https://t.me/var_app', '_blank');
-      }
-    });
-
-
-
-
-    // Coming Soon Function
-    function showComingSoon() {
+    
+    // Show Telegram Toast بعد 1.5 ثانية كما في السابق
+    setTimeout(() => {
       const toast = document.getElementById('telegramToast');
-      toast.querySelector('.toast-icon').className = 'fas fa-info-circle toast-icon';
-      toast.querySelector('.toast-icon').style.color = 'var(--accent-color)';
-      toast.querySelector('.toast-content').textContent = 'هذه الميزة قريبًا في التحديثات القادمة!';
-      toast.classList.add('show');
-        
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
+      if (toast) toast.classList.add('show');
+    }, 200);
+    
+    // Close Toast (زر الإغلاق الخاص بالإشعار فقط)
+    const toastClose = document.getElementById('toastClose');
+    if (toastClose) {
+      toastClose.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const toast = document.getElementById('telegramToast');
+        if (toast) toast.classList.remove('show');
+      });
     }
+    
+    // Click on toast to open Telegram (النقر على منطقة المحتوى أو الأيقونة)
+    const telegramToast = document.getElementById('telegramToast');
+    if (telegramToast) {
+      telegramToast.addEventListener('click', function(e) {
+        // إذا تم الضغط على زر الإغلاق لا نفتح الرابط
+        if (e.target.classList.contains('toast-close') || e.target.closest('.toast-close')) {
+          return;
+        }
+        window.open('https://t.me/var_app', '_blank');
+      });
+    }
+    
+    // تنظيف شامل: التأكد من عدم وجود أي عنصر من الـ nav menu أو الـ fab في الـ DOM
+    // حذف أي عنصر يحمل id="menuBtn", class="fab", class="side-nav", class="overlay"
+    const removeElementsBySelectors = (selectors) => {
+      selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          if (el && el.parentNode) el.parentNode.removeChild(el);
+        });
+      });
+    };
+    
+    removeElementsBySelectors([
+      '#menuBtn', '.fab', '.side-nav', '#sideNav', '.nav-menu', '.nav-item', 
+      '.nav-header', '#closeNav', '.close-nav', '.nav-footer', '.app-version',
+      '.overlay', '#overlay', '[class*="side-nav"]', '[id*="sideNav"]'
+    ]);
+    
+    // إزالة أي متغيرات أو بقايا للكود في window
+    delete window.sideNav;
+    delete window.menuBtn;
+    delete window.closeNav;
+    delete window.overlay;
+    
+    // إزالة أي event listeners قديمة مرتبطة بـ document أو body بخصوص فتح القائمة
+    // لا يمكن إزالة all listeners لكن نضمن أن أي كود سابق لا يؤثر
+    console.log("✅ تم إزالة قائمة التنقل (nav menu) بالكامل، وجميع الأزرار بداخلها، وتم حذف الزر الذي كان يفتحها (FAB) وجميع العناصر المرتبطة (overlay, close buttons, navbar).");
+    
+    // إضافة تأكيد بصري في واجهة المستخدم لا شيء، فقط البطاقات
+    // منع ظهور أي عناصر عائمة أو قوائم منبثقة
+    const styleClear = document.createElement('style');
+    styleClear.textContent = `
+      /* إزالة أي بقايا للـ nav أو الـ fab قد تكون ظهرت ديناميكياً */
+      .fab, .side-nav, .nav-menu, .nav-item, .nav-header, .close-nav, .nav-footer, .app-version, .overlay, #menuBtn, [onclick*="menu"], [onclick*="nav"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0px !important;
+        height: 0px !important;
+        pointer-events: none !important;
+        position: fixed !important;
+        top: -9999px !important;
+        left: -9999px !important;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      /* ضمان أن main-content في المنتصف دون وجود أي أزرار جانبية */
+      .main-content {
+        padding-top: 20px;
+      }
+    `;
+    document.head.appendChild(styleClear);
+    
+    // إضافة إعادة تعيين للـ scroll أو أي سلوك قديم
+    window.addEventListener('load', function() {
+      // فحص نهائي: إذا كان هناك عنصر fab ظاهر بالخطأ نزيله
+      const anyFab = document.querySelector('.fab, #menuBtn, [class*="fab"]');
+      if (anyFab && anyFab.parentNode) anyFab.parentNode.removeChild(anyFab);
+      
+      const anySide = document.querySelector('.side-nav, #sideNav, .nav-menu');
+      if (anySide && anySide.parentNode) anySide.parentNode.removeChild(anySide);
+      
+      const anyOverlay = document.querySelector('.overlay, #overlay');
+      if (anyOverlay && anyOverlay.parentNode) anyOverlay.parentNode.removeChild(anyOverlay);
+      
+      // لا توجد قائمة تنقل ولاشيء يتعلق بها بالتأكيد
+    });
   </script>
 </body>
 </html>
