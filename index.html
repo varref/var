@@ -31,6 +31,12 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    /* إخفاء الصفحة في البداية */
+body {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
     body {
       font-family: 'Tajawal', sans-serif;
       background: var(--dark-bg);
@@ -387,6 +393,16 @@
         });
       });
     };
+
+
+window.addEventListener("load", function () {
+  document.body.style.opacity = "1";
+});
+
+
+
+
+    
     
     removeElementsBySelectors([
       '#menuBtn', '.fab', '.side-nav', '#sideNav', '.nav-menu', '.nav-item', 
