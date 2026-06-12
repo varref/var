@@ -155,7 +155,6 @@ body {
       transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       max-width: 300px;
       border-left: 4px solid var(--primary-color);
-      cursor: pointer;
     }
 
     .toast.show {
@@ -183,7 +182,7 @@ body {
     @media (min-width: 768px) {
       .features-grid {
         grid-template-columns: repeat(2, 1fr);
-        max-width: 600px;
+        max-width: 700px;
         margin: 30px auto;
       }
     }
@@ -253,6 +252,7 @@ body {
 </head>
 <body>
 
+  <!-- Main Content: فقط البطاقات المتبقية (القنوات الناقلة والمباريات) -->
   <main class="main-content">
     <div class="features-grid">
       <div class="feature-card" id="channels-card" onclick="window.location.href='https://varref.github.io/LiveT/'">
@@ -269,6 +269,7 @@ body {
     </div>
   </main>
 
+  <!-- Notification Toast -->
   <div class="toast" id="telegramToast">
     <i class="fas fa-paper-plane toast-icon"></i>
     <div class="toast-content">
@@ -278,7 +279,13 @@ body {
   </div>
 
   <script>
-    // Ripple Effect يضيف تأثير الموجة لبطاقات المحتوى فقط
+    // =========================================================================
+    // تم إزالة NAV MENU بالكامل وكل الأزرار بداخله
+    // تم حذف بطاقتي "جدول المباريات" و "أخبار الرياضة"
+    // تم تغيير رابط التلجرام إلى https://t.me/OFFVAR وفتحه في نفس النافذة (بدون تبويب جديد)
+    // =========================================================================
+    
+    // Ripple Effect للبطاقات المتبقية
     document.querySelectorAll('.feature-card').forEach(button => {
       button.addEventListener('click', function(e) {
         const rect = this.getBoundingClientRect();
@@ -306,7 +313,8 @@ body {
         }, 600);
       });
     });
-    
+
+    // إضافة تعريف animation الripple
     if (!document.querySelector('#ripple-keyframe-style')) {
       const styleSheet = document.createElement("style");
       styleSheet.id = "ripple-keyframe-style";
@@ -321,13 +329,13 @@ body {
       document.head.appendChild(styleSheet);
     }
     
-    // Show Telegram Toast بعد 0.2 ثانية
+    // إظهار Toast Telegram بعد 0.2 ثانية
     setTimeout(() => {
       const toast = document.getElementById('telegramToast');
       if (toast) toast.classList.add('show');
     }, 200);
     
-    // Close Toast
+    // إغلاق Toast عند الضغط على زر الإغلاق
     const toastClose = document.getElementById('toastClose');
     if (toastClose) {
       toastClose.addEventListener('click', function(e) {
@@ -337,24 +345,19 @@ body {
       });
     }
     
-    // التوجيه الفوري والتلقائي إلى تطبيق التليجرام مباشرة
+    // فتح رابط التلجرام في نفس النافذة (بدون تبويب جديد)
     const telegramToast = document.getElementById('telegramToast');
     if (telegramToast) {
       telegramToast.addEventListener('click', function(e) {
         if (e.target.classList.contains('toast-close') || e.target.closest('.toast-close')) {
           return;
         }
-        // تحويل مباشر باستخدام رابط البروتوكول المخصص للتطبيقات
-        window.location.href = 'tg://resolve?domain=OFFVAR';
-        
-        // كخيار احتياطي في حال لم يكن التطبيق مثبتاً على الجهاز يفتح المتصفح بعد جزء من الثانية
-        setTimeout(() => {
-          window.open('https://t.me/OFFVAR', '_blank');
-        }, 300);
+        // فتح الرابط في نفس الصفحة
+        window.location.href = 'https://t.me/OFFVAR';
       });
     }
     
-    // تنظيف شامل للـ DOM
+    // إزالة أي عناصر متبقية من القوائم الجانبية أو الأزرار العائمة
     const removeElementsBySelectors = (selectors) => {
       selectors.forEach(selector => {
         const elements = document.querySelectorAll(selector);
@@ -364,9 +367,9 @@ body {
       });
     };
 
-window.addEventListener("load", function () {
-  document.body.style.opacity = "1";
-});
+    window.addEventListener("load", function () {
+      document.body.style.opacity = "1";
+    });
     
     removeElementsBySelectors([
       '#menuBtn', '.fab', '.side-nav', '#sideNav', '.nav-menu', '.nav-item', 
@@ -374,11 +377,13 @@ window.addEventListener("load", function () {
       '.overlay', '#overlay', '[class*="side-nav"]', '[id*="sideNav"]'
     ]);
     
+    // تنظيف أي متغيرات عالقة
     delete window.sideNav;
     delete window.menuBtn;
     delete window.closeNav;
     delete window.overlay;
     
+    // إضافة CSS إضافي لضمان الإخفاء
     const styleClear = document.createElement('style');
     styleClear.textContent = `
       .fab, .side-nav, .nav-menu, .nav-item, .nav-header, .close-nav, .nav-footer, .app-version, .overlay, #menuBtn, [onclick*="menu"], [onclick*="nav"] {
@@ -402,6 +407,7 @@ window.addEventListener("load", function () {
     `;
     document.head.appendChild(styleClear);
     
+    // فحص نهائي عند اكتمال التحميل
     window.addEventListener('load', function() {
       const anyFab = document.querySelector('.fab, #menuBtn, [class*="fab"]');
       if (anyFab && anyFab.parentNode) anyFab.parentNode.removeChild(anyFab);
