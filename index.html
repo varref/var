@@ -280,9 +280,10 @@ body {
 
   <script>
     // =========================================================================
-    // تم إزالة NAV MENU بالكامل وكل الأزرار بداخله
-    // تم حذف بطاقتي "جدول المباريات" و "أخبار الرياضة"
-    // تم تغيير رابط التلجرام إلى https://t.me/OFFVAR وفتحه في نفس النافذة (بدون تبويب جديد)
+    // تم إزالة NAV MENU بالكامل وكل الأزرار بداخله (القائمة الجانبية وكل عناصرها)
+    // كما تم إزالة الزر الذي يفتحه (FAB) وجميع التوابع المرتبطة به.
+    // تم حذف بطاقتي "جدول المباريات" و "أخبار الرياضة" حسب الطلب.
+    // تم تغيير رابط التلجرام إلى https://t.me/OFFVAR
     // =========================================================================
     
     // Ripple Effect للبطاقات المتبقية
@@ -314,7 +315,7 @@ body {
       });
     });
 
-    // إضافة تعريف animation الripple
+    // إضافة تعريف animation الripple في حال لم يتم تغطيته
     if (!document.querySelector('#ripple-keyframe-style')) {
       const styleSheet = document.createElement("style");
       styleSheet.id = "ripple-keyframe-style";
@@ -345,15 +346,15 @@ body {
       });
     }
     
-    // فتح رابط التلجرام في نفس النافذة (بدون تبويب جديد)
+    // فتح رابط التلجرام الجديد عند النقر على منطقة الإشعار (ما عدا زر الإغلاق)
     const telegramToast = document.getElementById('telegramToast');
     if (telegramToast) {
       telegramToast.addEventListener('click', function(e) {
         if (e.target.classList.contains('toast-close') || e.target.closest('.toast-close')) {
           return;
         }
-        // فتح الرابط في نفس الصفحة
-        window.location.href = 'https://t.me/OFFVAR';
+        // الرابط المطلوب تغييره
+        window.open('https://t.me/OFFVAR', '_blank');
       });
     }
     
@@ -383,7 +384,7 @@ body {
     delete window.closeNav;
     delete window.overlay;
     
-    // إضافة CSS إضافي لضمان الإخفاء
+    // إضافة CSS إضافي لضمان إخفاء أي بقايا
     const styleClear = document.createElement('style');
     styleClear.textContent = `
       .fab, .side-nav, .nav-menu, .nav-item, .nav-header, .close-nav, .nav-footer, .app-version, .overlay, #menuBtn, [onclick*="menu"], [onclick*="nav"] {
