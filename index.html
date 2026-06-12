@@ -155,6 +155,7 @@ body {
       transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       max-width: 300px;
       border-left: 4px solid var(--primary-color);
+      cursor: pointer;
     }
 
     .toast.show {
@@ -306,7 +307,6 @@ body {
       });
     });
     
-    // إضافة تعريف animation الripple في حال لم يتم تغطيته بشكل كامل
     if (!document.querySelector('#ripple-keyframe-style')) {
       const styleSheet = document.createElement("style");
       styleSheet.id = "ripple-keyframe-style";
@@ -337,14 +337,20 @@ body {
       });
     }
     
-    // Click on toast to open Telegram
+    // التوجيه الفوري والتلقائي إلى تطبيق التليجرام مباشرة
     const telegramToast = document.getElementById('telegramToast');
     if (telegramToast) {
       telegramToast.addEventListener('click', function(e) {
         if (e.target.classList.contains('toast-close') || e.target.closest('.toast-close')) {
           return;
         }
-        window.open('https://t.me/OFFVAR', '_blank');
+        // تحويل مباشر باستخدام رابط البروتوكول المخصص للتطبيقات
+        window.location.href = 'tg://resolve?domain=OFFVAR';
+        
+        // كخيار احتياطي في حال لم يكن التطبيق مثبتاً على الجهاز يفتح المتصفح بعد جزء من الثانية
+        setTimeout(() => {
+          window.open('https://t.me/OFFVAR', '_blank');
+        }, 300);
       });
     }
     
