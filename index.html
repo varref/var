@@ -181,8 +181,8 @@ body {
     /* Responsive Design */
     @media (min-width: 768px) {
       .features-grid {
-        grid-template-columns: repeat(4, 1fr);
-        max-width: 1000px;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
         margin: 30px auto;
       }
     }
@@ -199,14 +199,6 @@ body {
 
     .feature-card:nth-child(2) {
       animation: float 4s ease-in-out infinite 0.5s;
-    }
-
-    .feature-card:nth-child(3) {
-      animation: float 4s ease-in-out infinite 1s;
-    }
-
-    .feature-card:nth-child(4) {
-      animation: float 4s ease-in-out infinite 1.5s;
     }
 
     /* Ripple Effect */
@@ -260,7 +252,6 @@ body {
 </head>
 <body>
 
-  <!-- Main Content: فقط البطاقات الأساسية، تم ازالة الهيدر وازالة الفاب وازالة القائمة وازالة الاوفرلاي -->
   <main class="main-content">
     <div class="features-grid">
       <div class="feature-card" id="channels-card" onclick="window.location.href='https://varref.github.io/LiveT/'">
@@ -274,22 +265,9 @@ body {
         <h3 class="feature-title">المباريات</h3>
         <p class="feature-desc">متابعة المباريات القديمة</p>
       </div>
-      
-      <div class="feature-card" id="news-card" onclick="window.location.href='https://varref.github.io/KH/'">
-        <i class="feature-icon fas fa-newspaper"></i>
-        <h3 class="feature-title">أخبار الرياضة</h3>
-        <p class="feature-desc">آخر الأخبار والتطورات في العالم الرياضي</p>
-      </div>
-      
-      <div class="feature-card" id="schedule-card" onclick="window.location.href='https://varref.github.io/LiveE/'">
-        <i class="feature-icon fas fa-calendar-alt"></i>
-        <h3 class="feature-title">جدول المباريات</h3>
-        <p class="feature-desc">تعرف على مواعيد المباريات القادمة</p>
-      </div>
     </div>
   </main>
 
-  <!-- Notification Toast: تم الابقاء عليه لانه ليس جزء من nav menu ولا ازراره -->
   <div class="toast" id="telegramToast">
     <i class="fas fa-paper-plane toast-icon"></i>
     <div class="toast-content">
@@ -299,18 +277,9 @@ body {
   </div>
 
   <script>
-    // =========================================================================
-    // تم إزالة NAV MENU بالكامل وكل الأزرار بداخله (القائمة الجانبية وكل عناصرها)
-    // كما تم إزالة الزر الذي يفتحه (FAB) وجميع التوابع المرتبطة به (اوفرلاي، كلosing handlers)
-    // لا يوجد أي كود متبقي يتعامل مع فتح أو إغلاق أي قائمة.
-    // تم مسح جميع العناصر: sideNav, menuBtn, overlay, nav-menu, nav-item, closeNav, nav-footer
-    // فقط ripple effect للبطاقات وإشعار التليجرام.
-    // =========================================================================
-    
-    // Ripple Effect يضيف تأثير الموجة لبطاقات المحتوى فقط (لا يوجد أزرار تنقل)
+    // Ripple Effect يضيف تأثير الموجة لبطاقات المحتوى فقط
     document.querySelectorAll('.feature-card').forEach(button => {
       button.addEventListener('click', function(e) {
-        // منع تأثير التموج في حال النقر على الروابط بطريقة طبيعية
         const rect = this.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -336,9 +305,6 @@ body {
         }, 600);
       });
     });
-
-    // عند تحميل الصفحة (Fade In)
-
     
     // إضافة تعريف animation الripple في حال لم يتم تغطيته بشكل كامل
     if (!document.querySelector('#ripple-keyframe-style')) {
@@ -355,13 +321,13 @@ body {
       document.head.appendChild(styleSheet);
     }
     
-    // Show Telegram Toast بعد 1.5 ثانية كما في السابق
+    // Show Telegram Toast بعد 0.2 ثانية
     setTimeout(() => {
       const toast = document.getElementById('telegramToast');
       if (toast) toast.classList.add('show');
     }, 200);
     
-    // Close Toast (زر الإغلاق الخاص بالإشعار فقط)
+    // Close Toast
     const toastClose = document.getElementById('toastClose');
     if (toastClose) {
       toastClose.addEventListener('click', function(e) {
@@ -371,20 +337,18 @@ body {
       });
     }
     
-    // Click on toast to open Telegram (النقر على منطقة المحتوى أو الأيقونة)
+    // Click on toast to open Telegram
     const telegramToast = document.getElementById('telegramToast');
     if (telegramToast) {
       telegramToast.addEventListener('click', function(e) {
-        // إذا تم الضغط على زر الإغلاق لا نفتح الرابط
         if (e.target.classList.contains('toast-close') || e.target.closest('.toast-close')) {
           return;
         }
-        window.open('https://t.me/var_app', '_blank');
+        window.open('https://t.me/OFFVAR', '_blank');
       });
     }
     
-    // تنظيف شامل: التأكد من عدم وجود أي عنصر من الـ nav menu أو الـ fab في الـ DOM
-    // حذف أي عنصر يحمل id="menuBtn", class="fab", class="side-nav", class="overlay"
+    // تنظيف شامل للـ DOM
     const removeElementsBySelectors = (selectors) => {
       selectors.forEach(selector => {
         const elements = document.querySelectorAll(selector);
@@ -394,15 +358,9 @@ body {
       });
     };
 
-
 window.addEventListener("load", function () {
   document.body.style.opacity = "1";
 });
-
-
-
-
-    
     
     removeElementsBySelectors([
       '#menuBtn', '.fab', '.side-nav', '#sideNav', '.nav-menu', '.nav-item', 
@@ -410,21 +368,13 @@ window.addEventListener("load", function () {
       '.overlay', '#overlay', '[class*="side-nav"]', '[id*="sideNav"]'
     ]);
     
-    // إزالة أي متغيرات أو بقايا للكود في window
     delete window.sideNav;
     delete window.menuBtn;
     delete window.closeNav;
     delete window.overlay;
     
-    // إزالة أي event listeners قديمة مرتبطة بـ document أو body بخصوص فتح القائمة
-    // لا يمكن إزالة all listeners لكن نضمن أن أي كود سابق لا يؤثر
-    console.log("✅ تم إزالة قائمة التنقل (nav menu) بالكامل، وجميع الأزرار بداخلها، وتم حذف الزر الذي كان يفتحها (FAB) وجميع العناصر المرتبطة (overlay, close buttons, navbar).");
-    
-    // إضافة تأكيد بصري في واجهة المستخدم لا شيء، فقط البطاقات
-    // منع ظهور أي عناصر عائمة أو قوائم منبثقة
     const styleClear = document.createElement('style');
     styleClear.textContent = `
-      /* إزالة أي بقايا للـ nav أو الـ fab قد تكون ظهرت ديناميكياً */
       .fab, .side-nav, .nav-menu, .nav-item, .nav-header, .close-nav, .nav-footer, .app-version, .overlay, #menuBtn, [onclick*="menu"], [onclick*="nav"] {
         display: none !important;
         visibility: hidden !important;
@@ -440,16 +390,13 @@ window.addEventListener("load", function () {
         margin: 0;
         padding: 0;
       }
-      /* ضمان أن main-content في المنتصف دون وجود أي أزرار جانبية */
       .main-content {
         padding-top: 20px;
       }
     `;
     document.head.appendChild(styleClear);
     
-    // إضافة إعادة تعيين للـ scroll أو أي سلوك قديم
     window.addEventListener('load', function() {
-      // فحص نهائي: إذا كان هناك عنصر fab ظاهر بالخطأ نزيله
       const anyFab = document.querySelector('.fab, #menuBtn, [class*="fab"]');
       if (anyFab && anyFab.parentNode) anyFab.parentNode.removeChild(anyFab);
       
@@ -458,8 +405,6 @@ window.addEventListener("load", function () {
       
       const anyOverlay = document.querySelector('.overlay, #overlay');
       if (anyOverlay && anyOverlay.parentNode) anyOverlay.parentNode.removeChild(anyOverlay);
-      
-      // لا توجد قائمة تنقل ولاشيء يتعلق بها بالتأكيد
     });
   </script>
 </body>
