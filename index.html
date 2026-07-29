@@ -187,7 +187,7 @@ body {
       }
     }
 
-    /* Animations */
+    /* Animations - Float for all 4 cards with staggered delays */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
@@ -196,9 +196,14 @@ body {
     .feature-card:nth-child(1) {
       animation: float 4s ease-in-out infinite;
     }
-
     .feature-card:nth-child(2) {
       animation: float 4s ease-in-out infinite 0.5s;
+    }
+    .feature-card:nth-child(3) {
+      animation: float 4s ease-in-out infinite 1s;
+    }
+    .feature-card:nth-child(4) {
+      animation: float 4s ease-in-out infinite 1.5s;
     }
 
     /* Ripple Effect */
@@ -252,7 +257,7 @@ body {
 </head>
 <body>
 
-  <!-- Main Content: فقط البطاقات المتبقية (القنوات الناقلة والمباريات) -->
+  <!-- Main Content: البطاقات الأربع (القنوات الناقلة، المباريات، أخبار الرياضة، جدول المباريات) -->
   <main class="main-content">
     <div class="features-grid">
       <div class="feature-card" id="channels-card" onclick="window.location.href='https://varref.github.io/LiveT/'">
@@ -265,6 +270,19 @@ body {
         <i class="feature-icon fas fa-trophy"></i>
         <h3 class="feature-title">المباريات</h3>
         <p class="feature-desc">متابعة المباريات القديمة</p>
+      </div>
+
+      <!-- البطاقات المضافة حديثاً -->
+      <div class="feature-card" id="news-card" onclick="window.location.href='https://varref.github.io/KH/'">
+        <i class="feature-icon fas fa-newspaper"></i>
+        <h3 class="feature-title">أخبار الرياضة</h3>
+        <p class="feature-desc">آخر الأخبار والتطورات في العالم الرياضي</p>
+      </div>
+
+      <div class="feature-card" id="schedule-card" onclick="window.location.href='https://varref.github.io/LiveE/'">
+        <i class="feature-icon fas fa-calendar-alt"></i>
+        <h3 class="feature-title">جدول المباريات</h3>
+        <p class="feature-desc">تعرف على مواعيد المباريات القادمة</p>
       </div>
     </div>
   </main>
@@ -282,11 +300,10 @@ body {
     // =========================================================================
     // تم إزالة NAV MENU بالكامل وكل الأزرار بداخله (القائمة الجانبية وكل عناصرها)
     // كما تم إزالة الزر الذي يفتحه (FAB) وجميع التوابع المرتبطة به.
-    // تم حذف بطاقتي "جدول المباريات" و "أخبار الرياضة" حسب الطلب.
     // تم تغيير رابط التلجرام إلى https://t.me/OFFVAR
     // =========================================================================
     
-    // Ripple Effect للبطاقات المتبقية
+    // Ripple Effect للبطاقات
     document.querySelectorAll('.feature-card').forEach(button => {
       button.addEventListener('click', function(e) {
         const rect = this.getBoundingClientRect();
@@ -353,7 +370,6 @@ body {
         if (e.target.classList.contains('toast-close') || e.target.closest('.toast-close')) {
           return;
         }
-        // الرابط المطلوب تغييره
         window.open('https://t.me/OFFVAR', '_blank');
       });
     }
